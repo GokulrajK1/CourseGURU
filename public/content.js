@@ -9,6 +9,8 @@ function scrapeCourseNames() {
     }
     console.log(`Found ${courseNames.length} course names.`);
 
+    console.log("From dev branch");
+
     // Initialize an array to store course data
     const courses = [];
 
