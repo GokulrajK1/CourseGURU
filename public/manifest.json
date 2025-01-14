@@ -1,0 +1,25 @@
+{
+    "manifest_version" : 3,
+    "name" : "CourseGURU",
+    "author": "Gokulraj Kumarassamy",
+    "version" : "1.0.0",
+    "description" : "CourseGURU is a Google Chrome extension designed to enhance Course Schedule Planner for Rutgers University students by integrating detailed professor evaluations from www.ratemyprofessors.com and personalized schedule recommendations powered by AI and machine learning.",
+    "permissions": [
+        "activeTab", 
+        "scripting",
+        "tabs",
+        "sidePanel"
+    ],
+    "action": {
+        "default_title": "CourseGURU"
+    },
+    "side_panel" : {
+        "default_path" : "index.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "host_permissions": [
+        "https://sims.rutgers.edu/csp/*"
+    ]
+}
