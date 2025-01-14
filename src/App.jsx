@@ -4,6 +4,28 @@ import './App.css'
 function App() {
 
 	const [scraped_data, setScrapedData] = useState({});
+	const [processed_data, setProcessedData] = useState({});
+
+	const sendDataToBackend = async () => {
+		try {
+		  const response = await fetch("http://127.0.0.1:5000/process-data", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(scraped_data),
+		  });
+	
+		  if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		  }
+		  
+		  const data = await response.json();
+		  setProcessedData(data);
+		} catch (error) {
+		  console.error("Error sending data to the backend:", error);
+		}
+	  };
 
 	const sendScrapeRequestToBackground = () => {
 		chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -13,6 +35,7 @@ function App() {
 				if (response.status === "Success") {
 					console.log("Success! Data Received:", response.data);
 					setScrapedData(response.data)
+					sendDataToBackend()
 				} else {
 					console.log("Failure!");
 				}
@@ -24,6 +47,7 @@ function App() {
 		<div>
 			<h1>CourseGURU</h1>
 			<button onClick={sendScrapeRequestToBackground}>Scrape</button>
+			<p>Processed Data: {JSON.stringify(processed_data)}</p>
 			<p>Scraped Data: {JSON.stringify(scraped_data)}</p>
 		</div>
 	)

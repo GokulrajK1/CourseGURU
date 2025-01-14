@@ -1,5 +1,4 @@
 function scrapeCourseNames() {
-    console.log("Function scrapeCourseNames called.");
 
     // Find all elements with the class "title" (course names)
     const courseElements = document.querySelectorAll('span.title');
@@ -7,7 +6,6 @@ function scrapeCourseNames() {
         console.error("No course names found! Check the selector.");
         return [];
     }
-    console.log(`Found ${courseElements.length} courses.`);
 
     // Initialize an array to store course data
     const courses = [];
@@ -18,7 +16,6 @@ function scrapeCourseNames() {
         const courseName = courseElement?.textContent.trim() || "N/A";
         const courseCodeElement = courseElement.closest('.dijitTitlePane').querySelector('span[title="Course Number"]');
         const courseCode = courseCodeElement?.textContent.trim() || "Unknown";
-        console.log(`Processing Course ${courseIndex + 1}: ${courseName} (${courseCode})`);
 
         // Find the associated dropdown container
         const dropdownContainer = courseElement.closest('.dijitTitlePane').querySelector('.dijitTitlePaneContentOuter');
@@ -101,8 +98,7 @@ function scrapeCourseNames() {
         });
     });
 
-    console.log("Scraping completed. Returning organized course data.");
-    console.log("Final Scraped Courses Data:", JSON.stringify(courses, null, 2)); // Log the final data in JSON format
+    console.log("Final Scraped Courses Data:", courses); // Log the final data in JSON format
     return courses; // Return the array of course objects with sections and details
 }
 // Call the function to execute and store the result in a variable
