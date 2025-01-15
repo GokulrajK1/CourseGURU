@@ -6,14 +6,16 @@ function App() {
 	const [scraped_data, setScrapedData] = useState({});
 	const [processed_data, setProcessedData] = useState({});
 
-	const sendDataToBackend = async () => {
+	const sendDataToBackend = async (dataToSend) => {
+		console.log("Sending");
+		console.log(dataToSend);
 		try {
 		  const response = await fetch("http://127.0.0.1:5000/process-data", {
 			method: "POST",
 			headers: {
 			  "Content-Type": "application/json",
 			},
-			body: JSON.stringify(scraped_data),
+			body: JSON.stringify(dataToSend),
 		  });
 	
 		  if (!response.ok) {
@@ -34,8 +36,8 @@ function App() {
 			chrome.runtime.sendMessage({ action: "SCRAPE_REQUEST", tabId: activeTab.id }, (response) => {
 				if (response.status === "Success") {
 					console.log("Success! Data Received:", response.data);
-					setScrapedData(response.data)
-					sendDataToBackend()
+					setScrapedData(response.data);
+					sendDataToBackend(response.data);
 				} else {
 					console.log("Failure!");
 				}
