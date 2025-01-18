@@ -48,6 +48,7 @@ function App() {
 	return (
 		<div>
 			<h1>CourseGURU</h1>
+			<h2>Optimize Classes</h2>
 			<button onClick={sendScrapeRequestToBackground}>Scrape</button>
 			<p>Processed Data: {JSON.stringify(processed_data)}</p>
 			<p>Scraped Data: {JSON.stringify(scraped_data)}</p>
