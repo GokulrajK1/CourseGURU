@@ -1,5 +1,7 @@
+import React from 'react';
 import { useState, useEffect } from 'react'
 import './App.css'
+import Menu from './components/Menu';
 
 function App() {
 
@@ -47,11 +49,11 @@ function App() {
 
 	return (
 		<div>
-			<h1>CourseGURU</h1>
-			<h2>Optimize Classes</h2>
+			<Menu />
 			<button onClick={sendScrapeRequestToBackground}>Scrape</button>
 			<p>Processed Data: {JSON.stringify(processed_data)}</p>
 			<p>Scraped Data: {JSON.stringify(scraped_data)}</p>
+			
 		</div>
 	)
 }
