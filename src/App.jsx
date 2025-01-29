@@ -49,15 +49,19 @@ function App() {
 	}
 
 	return (
-		<div>
-			<Menu />
-			<Typewriter />
-			<button onClick={sendScrapeRequestToBackground}>Scrape</button>
-			<p>Processed Data: {JSON.stringify(processed_data)}</p>
-			<p>Scraped Data: {JSON.stringify(scraped_data)}</p>
-			
+		<div className="main-background min-h-screen text-white">
+		  <Menu />
+		  <Typewriter />
+		  <button 
+			onClick={sendScrapeRequestToBackground} 
+			className="bg-transparent border border-white text-white py-2 px-4 rounded hover:bg-white hover:text-black transition duration-300"
+		  >
+			Scrape
+		  </button>
+		  <p className="mt-4">Processed Data: {JSON.stringify(processed_data)}</p>
+		  <p>Scraped Data: {JSON.stringify(scraped_data)}</p>
 		</div>
-	)
+	  );
 }
 
 export default App
